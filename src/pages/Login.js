@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import { ThemeProvider } from '@material-ui/styles';
 import { green } from '@material-ui/core/colors';
 import {connect} from "react-redux";
-import {userLoginFetch} from "./redux/actions";
+import {userLoginFetch} from "../redux/actions";
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -33,11 +33,10 @@ const theme = createMuiTheme({
     },
 });
 
-const Login = () => {
+const Login = ({ userLoginFetch }) => {
     const [email, setEmail] = React.useState();
     const [password, setPassword] = React.useState();
     const classes = useStyles();
-
     const onSubmit = (e) => {
         e.preventDefault();
         userLoginFetch({ email: email, password: password })

@@ -1,16 +1,17 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {Redirect, Route} from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-const ProtectedRoute = ({ component: Component, isLoggedIn, ...props }) => {
+const UnprotectedRoute = ({ component: Component, isLoggedIn, ...props }) => {
     console.log(isLoggedIn);
     return (
         <Route
             {...props}
             render={props => (
-                isLoggedIn ?
+                !isLoggedIn ?
                     <Component {...props} /> :
-                    <Redirect to='/login' />
+                    <Redirect to='/' />
             )}
         />
     );
@@ -19,8 +20,8 @@ const ProtectedRoute = ({ component: Component, isLoggedIn, ...props }) => {
 const mapStateToProps = state => {
     console.log(state);
     return {
-        isLoggedIn: !!state.currentUser,
+        isLoggedIn: !!state.currentUser.email,
     }
 };
 
-export default connect(mapStateToProps)(ProtectedRoute);
+export default withRouter(connect(mapStateToProps)(UnprotectedRoute));

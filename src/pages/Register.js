@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import { ThemeProvider } from '@material-ui/styles';
 import { green } from '@material-ui/core/colors';
 import {connect} from 'react-redux';
-import {userPostFetch} from './redux/actions';
+import {userPostFetch} from '../redux/actions';
 
 const useStyles = makeStyles(theme => ({
     container: {
